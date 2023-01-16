@@ -13,7 +13,7 @@ export class News extends Component {
   }
 
   async componentDidMount(){
-    let url=`https://newsapi.org/v2/top-headlines?country=in&apiKey=ef2527fe6d3f4b069c1dcbc689085d71&page=1&pageSize=${this.props.pageSize}`;
+    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=ef2527fe6d3f4b069c1dcbc689085d71&page=1&pageSize=${this.props.pageSize}`;
     this.setState({loading:true});
     let data= await fetch(url);
     let parsedData = await data.json();
@@ -23,7 +23,7 @@ export class News extends Component {
 
   handlePrevClick= async ()=>{
     console.log("Previous");
-      let url=`https://newsapi.org/v2/top-headlines?country=in&apiKey=ef2527fe6d3f4b069c1dcbc689085d71&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
+      let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=ef2527fe6d3f4b069c1dcbc689085d71&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
       this.setState({loading:true});
       let data= await fetch(url);
       let parsedData = await data.json();
@@ -38,7 +38,7 @@ export class News extends Component {
    handleNextClick= async ()=>{
     console.log("Next");
     if(!(this.state.page+1>Math.ceil(this.state.totalResults/this.props.pageSize))){
-      let url=`https://newsapi.org/v2/top-headlines?country=in&apiKey=ef2527fe6d3f4b069c1dcbc689085d71&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
+      let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=ef2527fe6d3f4b069c1dcbc689085d71&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
       this.setState({loading:true});
       let data= await fetch(url);
       let parsedData = await data.json();
